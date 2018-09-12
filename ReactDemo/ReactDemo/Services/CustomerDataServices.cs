@@ -128,7 +128,7 @@ namespace ReactDemo.Services
                     {
                         Count = kvp.Value,
                         Name = kvp.Key,
-                        Customers = customerlist.Where(i => i.CompanyName.Contains(kvp.Key)).ToList()
+                        Companies = customerlist.Where(i => i.CompanyName.Contains(kvp.Key)).Select(i => i.CompanyName).ToList()
 
                     });
                 }
@@ -136,8 +136,6 @@ namespace ReactDemo.Services
             int counter = 1;
             lstDataLayout = lstDataLayout.OrderByDescending(i => i.Count).ThenBy(i => i.Name).Take(5).ToList();
             lstDataLayout.ForEach(i => i.Id = counter++);
-            counter = 1;
-            lstDataLayout.ToList().ForEach(i => i.Customers.ForEach(d => d.Id = counter++));
             return lstDataLayout;
         }
     }

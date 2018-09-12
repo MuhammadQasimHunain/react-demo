@@ -17,6 +17,7 @@ export class FetchData extends React.Component<RouteComponentProps<{}>, FetchDat
             .then(data => {
                 this.setState({ datamodel: data, loading: false });
             });
+        
     }
 
     public render() {
@@ -25,14 +26,14 @@ export class FetchData extends React.Component<RouteComponentProps<{}>, FetchDat
             : FetchData.renderdatamodelTable(this.state.datamodel);
 
         return <div>
-            <h1>Weather forecast</h1>
+            <h1>Companies count</h1>
             <p>This component demonstrates fetching data from the server.</p>
+            <p>Companies list with coresponding companies </p>
             {contents}
         </div>;
     }
-    private static handleClick = () => {
-        debugger;
-        console.log('this is clicked:');
+    private static handleClick(e : any) {
+    console.log('The link was clicked.');
     }
     private static renderdatamodelTable(datamodel: DataLayout[]) {
 
@@ -53,10 +54,10 @@ export class FetchData extends React.Component<RouteComponentProps<{}>, FetchDat
                             <td>{model.count}</td>
                             <td><span className="btn btn-primary"> Show List</span> </td>
                             <td>
-                                <div className={`${model.id}`}>
+                                <div className={`${model.id}`} onClick={this.handleClick}>
                                     <ul>
                                         {
-                                            model.customers.map(sub => <li >{sub.companyName}</li>)
+                                            model.companies.map(sub => <li >{sub}</li>)
                                         }
                                     </ul>
                                 </div>
@@ -72,18 +73,5 @@ interface DataLayout {
     id: number;
     name: string;
     count: number;
-    customers: Customer[];
-}
-
-interface Customer {
-    id: number;
-    customerId: string;
-    address: string;
-    city: string;
-    companyName: string;
-    email: string;
-    firstname: string;
-    postalCode: string;
-    state: string;
-    surname: string;
+    companies: string[];
 }

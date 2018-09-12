@@ -9,12 +9,12 @@ namespace ReactDemo.Models
     {
         public DataLayout()
         {
-            Customers = new List<Customer>();
+            Companies = new List<string>();
         }
         public int Id { get; set; }
         public string Name { get; set; }
         public int Count { get; set; }
 
-        public List<Customer> Customers { get; set; }
+        public List<string> Companies { get; set; }
     }
 }
