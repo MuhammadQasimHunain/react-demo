@@ -10,6 +10,7 @@ namespace ReactDemo.Domain
 {
     public class CompanyDomain : IComanyDomain
     {
+        //Dependecy Injection
         public ICustomerDataServices CustomerDataServices { get; set; }
         public CompanyDomain(ICustomerDataServices customerDataServices)
         {

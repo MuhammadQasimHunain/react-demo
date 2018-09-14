@@ -107,19 +107,30 @@ namespace ReactDemo.Services
         {
             List<DataLayout> lstDataLayout = new List<DataLayout>();
             List<string> companyListKeyword = new List<string>();
+            //Splitting company Names
             customerlist.Select(i => i.CompanyName).ToList().ForEach(i => companyListKeyword.AddRange(i.Split()));
+
             //Remove Unwanted words
             companyListKeyword.RemoveAll(item => commonWords.Contains(item));
+
             //Removing words with length lesser then 3
             companyListKeyword.RemoveAll(item => item.Length <= 2);
+
+            //Selecting distinct items
             IDictionary<string, int> lstDictionary = companyListKeyword.Distinct()
                     .ToDictionary(dic => dic, dic => 0);
+            
+            //Assigning value as count and key as word
             List<string> lstCompanyNameKeys = new List<string>(lstDictionary.Keys);
             foreach (string key in lstCompanyNameKeys)
             {
                 lstDictionary[key] = companyListKeyword.Count(f => f == key);
             }
+
+            //Taking only maximum 5 values
             List<int> maxValues = lstDictionary.Values.OrderByDescending(i => i).Take(5).ToList();
+
+            //populating viewmodel
             foreach (KeyValuePair<string, int> kvp in lstDictionary)
             {
                 if (maxValues.Find(i => i.Equals(kvp.Value)) > 0)
@@ -134,6 +145,7 @@ namespace ReactDemo.Services
                 }
             }
             int counter = 1;
+            //slecting only 5 and ordering by count and then by name
             lstDataLayout = lstDataLayout.OrderByDescending(i => i.Count).ThenBy(i => i.Name).Take(5).ToList();
             lstDataLayout.ForEach(i => i.Id = counter++);
             return lstDataLayout;

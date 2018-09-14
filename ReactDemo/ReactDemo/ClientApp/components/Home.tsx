@@ -20,7 +20,7 @@ export class Home extends React.Component<RouteComponentProps<{}>, FetchDataExam
             });
 
     }
-
+    //this function render and return view
     public render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
