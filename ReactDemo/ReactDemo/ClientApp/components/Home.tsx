@@ -53,7 +53,6 @@ export class Home extends React.Component<RouteComponentProps<{}>, FetchDataExam
                         <tr key={model.id}>
                             <td>{model.name}</td>
                             <td>{model.count}</td>
-                            <td><span className="btn btn-primary"> Show List</span> </td>
                             <td>
                                 <div className={`${model.id}`}>
                                     <ul>

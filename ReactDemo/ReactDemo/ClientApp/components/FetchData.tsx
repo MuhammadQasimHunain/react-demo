@@ -43,7 +43,6 @@ export class FetchData extends React.Component<RouteComponentProps<{}>, FetchDat
                     <th>Name</th>
                     <th>Count</th>
                     <th>Companies</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -52,9 +51,8 @@ export class FetchData extends React.Component<RouteComponentProps<{}>, FetchDat
                         <tr key={model.id}>
                             <td>{model.name}</td>
                             <td>{model.count}</td>
-                            <td><span className="btn btn-primary"> Show List</span> </td>
                             <td>
-                                <div className={`${model.id}`} onClick={this.handleClick}>
+                                <div className={`${model.id}`}>
                                     <ul>
                                         {
                                             model.companies.map(sub => <li >{sub}</li>)
